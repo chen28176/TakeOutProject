@@ -113,6 +113,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new PageResult(total,records);
     }
 
+    /**
+     * 启用禁用功能
+     * @param status
+     * @param id
+     */
     @Override
     public void startOrStop(Integer status, long id) {
         Employee employee = new Employee();
@@ -120,6 +125,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setId(id);
 
         employeeMapper.update(employee);
+    }
+
+    /**
+     * 根据id查询员工
+     * @param id
+     * @return
+     */
+    @Override
+    public Employee getByid(long id) {
+        Employee employee = employeeMapper.getByid(id);
+        employee.setPassword("******");
+        return employee;
     }
 
 }
